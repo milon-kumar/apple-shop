@@ -1,7 +1,6 @@
 import nodemailer from "nodemailer"
 
 const SendEmail= async (EmailTo, EmailText, EmailSubject) => {
-
     let transporter = nodemailer.createTransport({
         host: 'mail.teamrabbil.com',
         port: 25,
@@ -14,7 +13,6 @@ const SendEmail= async (EmailTo, EmailText, EmailSubject) => {
         },
     });
 
-
     let mailOptions = {
         from: 'Task Manager MERN <info@teamrabbil.com>',
         to: EmailTo,
@@ -23,6 +21,6 @@ const SendEmail= async (EmailTo, EmailText, EmailSubject) => {
     };
 
     return  await transporter.sendMail(mailOptions)
-
 }
+
 export default SendEmail;
