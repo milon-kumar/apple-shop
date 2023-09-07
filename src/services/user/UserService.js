@@ -8,7 +8,7 @@ export const UserOtp = async (req) => {
     const emailText = `Your Verification Code is : ${OTP}`;
     const subject = `OTP Verification`;
     try {
-        //const sendEmailStatus = await SendEmail(email, emailText, subject);
+        const sendEmailStatus = await SendEmail(email, emailText, subject);
         const userUpdateOrCreateStatus = await UserModel.updateOne({ email: email }, { $set: { otp: OTP } }, { upsert: true });
         return {
             success: true,
@@ -65,7 +65,7 @@ export const UserProfileSave = async (req) => {
     return {
         success: true,
         message: "Create User Profile",
-        data: req.body
+        data: user
     }
 }
 
