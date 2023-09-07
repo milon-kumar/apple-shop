@@ -11,6 +11,7 @@ const AuthVerification = (req, res, next) => {
             })
         } else {
             req.headers.email = decodString['email'];
+            req.headers.userId = decodString['id'];
             next();
         }
     } catch (error) {

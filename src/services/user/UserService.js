@@ -7,9 +7,8 @@ export const UserOtp = async (req)=>{
     const OTP = Math.floor(100000 + Math.random() * 900000);
     const emailText = `Your Verification Code is : ${OTP}`;
     const subject = `OTP Verification`;
-
     try {
-        const sendEmailStatus = await SendEmail(email, emailText, subject);
+        //const sendEmailStatus = await SendEmail(email, emailText, subject);
         const userUpdateOrCreateStatus = await UserModel.updateOne({email:email},{$set:{otp:OTP}},{upsert:true});
         return {
             success: true,
@@ -34,9 +33,10 @@ export const UserOtpVerify = async (req)=>{
     const OTP = req.params.otp;
 
     const verifyRes = await UserModel.find({email:email,otp:OTP}).count('total');
+    const userId = await UserModel.find({email:email,otp:OTP}).select("_id");
     try {
         if (verifyRes === 1) {
-            const token = EncodeToken(email);
+            const token = EncodeToken(email,userId[0]['_id'].toString());
             await UserModel.updateOne({email:email},{$set:{otp:null}},{upsert:true})
             return {
                 success: true,
@@ -59,8 +59,7 @@ export const UserOtpVerify = async (req)=>{
 }
 
 export const UserProfileSave = async (req)=>{
-    req.body.userId = req.headers.id;
-    const data = req.body;
+    const data = req.headers;
     return {
         success:true,
         message:"Create User Profile",

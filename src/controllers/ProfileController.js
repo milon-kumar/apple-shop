@@ -1,9 +1,8 @@
 import { UserProfileDetails, UserProfileSave } from "../services/user/UserService.js"
 
 export const CreateProfile = async (req,res)=>{
-    return res.status(200).json({
-        data:req.headers,
-    })
+    const result = await UserProfileSave(req)
+    return res.status(200).json(result)
 }
 
 export const ReadProfile = async ()=>{
