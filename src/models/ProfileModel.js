@@ -1,6 +1,7 @@
-const mongoose = import('mongoose');
+import mongoose from "mongoose";
+const { Schema } = mongoose;
 
-const Schema = mongoose.Schema({
+const DataSchema = new Schema({
     userId:{type:mongoose.Schema.Types.ObjectId,required:true},
     image:{type: String,required:false},
     cus_name:{type: String,required: true},
@@ -22,6 +23,6 @@ const Schema = mongoose.Schema({
 
 },{timestamps:true,versionKey:false});
 
-const ProfileModel = mongoose.model('profiles',Schema);
+const ProfileModel = mongoose.model('profiles',DataSchema);
 
 export default ProfileModel;

@@ -7,6 +7,8 @@ import rateLimit from 'express-rate-limit'
 import helmet from "helmet";
 import hpp from "hpp";
 import xssClean from "xss-clean";
+import bodyParser from "body-parser";
+
 const app = express();
 
 const limiter = rateLimit({
@@ -22,6 +24,7 @@ app.use(cors());
 app.use(helmet());
 app.use(hpp());
 app.use(xssClean());
+app.use(bodyParser.json())
 
 app.use('/api/v1/',router);
 
