@@ -38,6 +38,7 @@ export const UserOtpVerify = async (req)=>{
     try {
         if (verifyRes === 1) {
             const token = EncodeToken(email);
+            await UserModel.updateOne({email:email},{$set:{otp:null}},{upsert:true})
             return {
                 success: true,
                 message: "Login Success",
