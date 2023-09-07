@@ -2,7 +2,6 @@ import UserModel from "../../models/UserModel.js";
 import { EncodeToken } from "../../utils/JwtToken.js";
 import SendEmail from "../../utils/SendEmail.js";
 
-
 export const UserOtp = async (req)=>{
     const email = req.params.email;
     const OTP = Math.floor(100000 + Math.random() * 900000);
