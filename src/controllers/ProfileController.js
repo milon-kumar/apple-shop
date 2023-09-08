@@ -10,6 +10,8 @@ export const ReadProfile = async ()=>{
     return res.status(200).json(result)
 }
 
+
+
 export const UpdateProfile = async ()=>{
     const result = await UserProfileSave(req)
     return res.status(200).json(result)
