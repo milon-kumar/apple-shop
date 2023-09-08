@@ -11,7 +11,7 @@ const DataSchema = new Schema({
     discountPrice:{type: String},
     image:{type: String,required: true},
     stock:{type: Boolean,default: true,required: true},
-    star:{type: String},
+    star:{type: String,required:false},
     remark:{type: String,required:true,enum:['new','trending','popular','top','spatial','regular']}
 },{timestamps:true,versionKey: false});
 

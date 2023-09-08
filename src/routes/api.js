@@ -33,7 +33,7 @@ router.get('/list-by-brand',ListByBrandProduct);
 router.get('/list-by-keyword',ListByKeywordProduct);
 router.get('/list-by-smilier',ListBySmilierProduct);
 router.get('/list-by-review',ListByReviewProduct);
-router.get('/list-by-remark',ListByRemarkProduct);
+router.get('/list-by-remark/:remark',ListByRemarkProduct);
 router.get('/product-details/:id',ProductDetails);
 router.get('/cart-list',CartList);
 router.post('/create-cart',CreateCart);

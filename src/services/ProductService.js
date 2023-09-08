@@ -41,13 +41,13 @@ export const allCategories = async () => {
 export const remarkProducts = async (req) => {
     try {
         const remark = req.params.remark
-        const products = ProductModel.aggregate([
+        const products = await ProductModel.aggregate([
             { $match: { remark: remark } },
             { $lookup: { from: "categories", localField: "categoryId", foreignField: "_id", as: "category" } },
             { $lookup: { from: "brands", localField: "brandId", foreignField: "_id", as: "brand" } },
             { $unwind: "$category" },
             { $unwind: "$brand" },
-            { $project: {} },
+            { $project: {'category._id':0 , 'brand._id':0} },
         ])
 
         return {
