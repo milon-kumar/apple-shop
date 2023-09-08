@@ -9,16 +9,24 @@ export const UserOtp = async (req) => {
     const OTP = Math.floor(100000 + Math.random() * 900000);
     const emailText = `Your Verification Code is : ${OTP}`;
     const subject = `OTP Verification`;
+
+
+    
     try {
         const sendEmailStatus = await SendEmail(email, emailText, subject);
         const userUpdateOrCreateStatus = await UserModel.updateOne({ email: email }, { $set: { otp: OTP } }, { upsert: true });
         return {
             success: true,
             message: "Email Send Success",
+
+
+
             data: {
                 OTP,
                 sendEmailStatus,
                 userUpdateOrCreateStatus,
+
+
             }
         }
     } catch (error) {
