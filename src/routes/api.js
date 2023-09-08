@@ -1,7 +1,7 @@
 import express from "express"
-import {BrandList} from "../controllers/BrandController.js";
-import {CategoryList} from "../controllers/CategoryController.js";
 import {
+    BrandList,
+    CategoryList,
     CartList,
     CreateCart, CreateWishProduct, ListByBrandProduct,
     ListByCategoryProduct,

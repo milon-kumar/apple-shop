@@ -1,4 +1,4 @@
-import { UserProfileDetails, UserProfileSave } from "../services/user/UserService.js"
+import { UserProfileDetails, UserProfileSave } from "../services/UserService.js"
 
 export const CreateProfile = async (req,res)=>{
     const result = await UserProfileSave(req)

@@ -1,7 +1,7 @@
-import UserModel from "../../models/UserModel.js";
-import { EncodeToken } from "../../utils/JwtToken.js";
-import SendEmail from "../../utils/SendEmail.js";
-import ProfileModel from "../../models/ProfileModel.js";
+import UserModel from "../models/UserModel.js";
+import { EncodeToken } from "../utils/JwtToken.js";
+import SendEmail from "../utils/SendEmail.js";
+import ProfileModel from "../models/ProfileModel.js";
 
 
 export const UserOtp = async (req) => {

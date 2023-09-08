@@ -1,4 +1,4 @@
-import { UserOtp,UserOtpVerify } from "../services/user/UserService.js";
+import { UserOtp,UserOtpVerify } from "../services/UserService.js";
 
 export const UserLogin = async (req, res) => {
     const result = await UserOtp(req);
@@ -6,7 +6,6 @@ export const UserLogin = async (req, res) => {
 }
 
 export const VerifyUser = async (req, res) => {
-
     const result = await UserOtpVerify(req);
     res.status(200).json(result);
 }
