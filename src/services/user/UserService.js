@@ -9,24 +9,16 @@ export const UserOtp = async (req) => {
     const OTP = Math.floor(100000 + Math.random() * 900000);
     const emailText = `Your Verification Code is : ${OTP}`;
     const subject = `OTP Verification`;
-
-
-    
     try {
         const sendEmailStatus = await SendEmail(email, emailText, subject);
         const userUpdateOrCreateStatus = await UserModel.updateOne({ email: email }, { $set: { otp: OTP } }, { upsert: true });
         return {
             success: true,
             message: "Email Send Success",
-
-
-
             data: {
                 OTP,
                 sendEmailStatus,
                 userUpdateOrCreateStatus,
-
-
             }
         }
     } catch (error) {
@@ -37,8 +29,6 @@ export const UserOtp = async (req) => {
         }
     }
 }
-
-
 
 export const UserOtpVerify = async (req) => {
     const email = req.params.email;
@@ -71,19 +61,39 @@ export const UserOtpVerify = async (req) => {
 }
 
 export const UserProfileSave = async (req) => {
-    const userId = req.headers.userId
-    req.body.userId = userId
-    const user = await ProfileModel.updateOne({ userId }, { $set: req.body }, { upsert: true })
-    return {
-        success: true,
-        message: "Create User Profile",
-        data: user
+    try {
+        const userId = req.headers.userId
+        req.body.userId = userId
+        const user = await ProfileModel.updateOne({ userId }, { $set: req.body }, { upsert: true })
+        return {
+            success: true,
+            message: "Update User Profile",
+            data: user
+        }
+    } catch (error) {
+        return {
+            success: false,
+            message: "Something went wrong",
+            error,
+        }
     }
 }
 
 export const UserProfileDetails = async (req) => {
-    return {
-        success: true,
-        message: "Read User Profile",
+    try {
+        const userId = req.headers.userId
+        req.body.userId = userId
+        const user = await ProfileModel.find({userId})
+        return {
+            success: true,
+            message: "User Find Success",
+            data:user,
+        }   
+    } catch (error) {
+        return {
+            success: false,
+            message: "Something went wrong ",
+            error,
+        }   
     }
 }
