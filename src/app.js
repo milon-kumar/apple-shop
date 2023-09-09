@@ -30,7 +30,7 @@ app.use('/api/v1/',router);
 
 app.use('*',(req,res)=>{
     res.status(404).json({
-        status:false,
+        status:true,
         type:"failed",
         message:"404 Notfound",
     });
