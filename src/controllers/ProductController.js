@@ -35,7 +35,7 @@ export const ListByReviewProduct = async (req,res)=>{
 }
 
 export const ListByRemarkProduct = async (req,res)=>{
-    const result = remarkProducts(req)
+    const result = await remarkProducts(req)
     return res.status(200).json(result)
 }
 
