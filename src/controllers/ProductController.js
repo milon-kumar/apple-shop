@@ -48,19 +48,23 @@ export const CartList = async (req,res)=>{
 }
 
 export const CreateCart = async (req,res)=>{
-    return res.status(200).json()
+
+
+    return res.status(200).json(sadfasdf)
 }
 
 export const RemoveCart = async (req,res)=>{
+
+    asdf
     return res.status(200).json()
 }
 
 export const ListWishProduct = async (req,res)=>{
-    return res.status(200).json()
+    return res.status(200).json(req)
 }
 
 export const CreateWishProduct = async (req,res)=>{
-    return res.status(200).json()
+    return res.status(200).json(req)
 }
 
 export const RemoveWishProduct = async (req,res)=>{
