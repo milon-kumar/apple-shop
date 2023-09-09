@@ -68,5 +68,7 @@ export const CreateWishProduct = async (req,res)=>{
 }
 
 export const RemoveWishProduct = async (req,res)=>{
+
+    
     return res.status(200).json()
 }
