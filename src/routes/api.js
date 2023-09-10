@@ -28,13 +28,13 @@ router.get('/brand-list',BrandList);
 router.get('/category-list',CategoryList);
 
 router.get('/slider-list',SliderList);
-router.get('/list-by-category',ListByCategoryProduct);
-router.get('/list-by-brand',ListByBrandProduct);
+router.get('/list-by-category/:slug',ListByCategoryProduct);
+router.get('/list-by-brand/:slug',ListByBrandProduct);
 router.get('/list-by-keyword',ListByKeywordProduct);
-router.get('/list-by-smilier',ListBySmilierProduct);
+router.get('/list-by-smilier/:slug',ListByCategoryProduct);
 router.get('/list-by-review',ListByReviewProduct);
 router.get('/list-by-remark/:remark',ListByRemarkProduct);
-router.get('/product-details/:id',ProductDetails);
+router.get('/product-details/:slug',ProductDetails);
 router.get('/cart-list',CartList);
 router.post('/create-cart',CreateCart);
 router.get('/remove-cart',RemoveCart);
