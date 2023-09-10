@@ -1,4 +1,4 @@
-import { allBrands, allCategories, remarkProducts ,categoryProduct,brandProduct,productDetails} from "../services/ProductService.js"
+import { allBrands, allCategories, remarkProducts ,categoryProduct,brandProduct,productDetails,smilierProduct} from "../services/ProductService.js"
 
 export const BrandList = async (req,res)=>{
     const result = await allBrands()
@@ -29,7 +29,8 @@ export const ListByKeywordProduct = async (req,res)=>{
 }
 
 export const ListBySmilierProduct = async (req,res)=>{
-    return res.status(200).json()
+    const result = await smilierProduct(req)
+    return res.status(200).json(result)
 }
 
 export const ListByReviewProduct = async (req,res)=>{

@@ -140,6 +140,7 @@ export const categoryProduct = async (req) => {
     }
 }
 
+
 export const brandProduct = async (req) => {
     try {
         const slug = req.params.slug
@@ -168,6 +169,34 @@ export const brandProduct = async (req) => {
     }
 }
 
+export const smilierProduct = async (req) => {
+    try {
+        const slug = req.params.slug
+        const category =  await CategoryModel.findOne({slug:slug}).select("_id")
+        const products =  await ProductModel.aggregate(
+            [
+                { $match: { categoryId: category._id } },
+                {$limit:10},
+                fetchBrandByProduct,
+                fetchCategoryByProduct,
+                projection,
+                unwindBrand,
+                unwindCategory
+            ]
+        )
+        return {
+            success: true,
+            message: "Smilier Product Get Success",
+            data:products   
+        }
+    } catch (error) {
+        return {
+            success: false,
+            message: "Something went wrong",
+            error: error.message
+        }
+    }
+}
 export const productDetails = async (req) => {
     try {
         const slug = req.params.slug
