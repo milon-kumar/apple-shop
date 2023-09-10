@@ -1,4 +1,5 @@
 import router from "./routes/api.js";
+import backendRouter from "./routes/backend.js"
 import mongoose from "mongoose"
 import express from "express";
 import cors from "cors";
@@ -27,6 +28,7 @@ app.use(xssClean());
 app.use(bodyParser.json())
 
 app.use('/api/v1/',router);
+app.use('/api/v1/backend/',backendRouter);
 
 app.use('*',(req,res)=>{
     res.status(404).json({
