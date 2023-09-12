@@ -40,21 +40,15 @@ export const allCategories = async () => {
 
 export const remarkProducts = async (req) => {
     try {
-        const remark = req.params.remark
-        const products = await ProductModel.aggregate([
-            { $match: { remark: remark } },
-            { $lookup: { from: "categories", localField: "categoryId", foreignField: "_id", as: "category" } },
-            { $lookup: { from: "brands", localField: "brandId", foreignField: "_id", as: "brand" } },
-            { $unwind: "$category" },
-            { $unwind: "$brand" },
-            { $project: {'category._id':0 , 'brand._id':0} },
-        ])
+        let remark=req.params.remark
 
-        return {
-            success: true,
-            message: "Product Get By Remark Success",
-            data: products
-        }
+        const products = await ProductModel.aggregate([
+            {$project:{"_id":0}},
+            {$lookup:}
+    ])
+
+
+        return {status:"success", data:products}
         
     } catch (error) {
         return {

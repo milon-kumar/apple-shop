@@ -2,8 +2,8 @@ import mongoose from "mongoose";
 import { Schema } from "mongoose";
 
 const DataSchema = new Schema({
-    brandId:{type:Schema.ObjectId,ref:"brands"},
-    categoryId:{type:Schema.ObjectId,ref:"categoires"},
+    brandId:{type:Schema.Types.ObjectId},
+    categoryId:{type:Schema.Types.ObjectId,ref:'categoires'},
     title:{type: String,trim: true,required: true,},
     slug:{type: String,trim: true,required: false,lowercase: true},
     shortDes:{type: String,trim: true,required: true,},
