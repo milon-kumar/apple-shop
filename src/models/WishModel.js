@@ -1,10 +1,11 @@
-const mongoose = import('mongoose');
+import mongoose from "mongoose";
+import { Schema } from "mongoose";
 
-const Schema = mongoose.Schema({
+const DataSchema = new Schema({
     userId:{type:mongoose.Schema.Types.ObjectId,required:true},
     productId:{type:mongoose.Schema.Types.ObjectId,required:true}
 },{timestamps:true,versionKey:false});
 
-const WishModel = mongoose.model('wishes',Schema);
+const WishModel = mongoose.model('wishes',DataSchema);
 
 export default WishModel;
