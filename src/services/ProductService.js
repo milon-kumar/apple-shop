@@ -2,6 +2,7 @@ import BrandModel from "../models/BrandModel.js"
 import { ObjectId } from "mongoose"
 import CategoryModel from "../models/CategoryModel.js"
 import ProductModel from "../models/ProductModel.js"
+import ProductSliderModel from "../models/ProductSliderModel.js"
 const fetchBrandByProduct = { $lookup: { from: 'brands', localField: 'brandId', foreignField: '_id', as: 'brand' } }
 const fetchCategoryByProduct = { $lookup: { from: 'categories', localField: 'categoryId', foreignField: '_id', as: 'category' } }
 const projection = { $project: { "category._id": 0, "brand._id": 0, "_id": 0,"brandId":0,"categoryId":0,"remark":0, } }
@@ -74,6 +75,19 @@ export const updateOrCreate = async (req) => {
         return {
             success: true,
             message: "Data Create Or Update Success ",
+            data: response,
+        }
+    } catch (error) {
+        
+    }
+}
+
+export const allSliders = async ()=>{
+    try {
+        const response = await ProductSliderModel.aggregate([{$match:{}},{$limit:1}])
+        return {
+            success: true,
+            message: "Data Fetch Success",
             data: response,
         }
     } catch (error) {
@@ -197,6 +211,7 @@ export const smilierProduct = async (req) => {
         }
     }
 }
+
 export const productDetails = async (req) => {
     try {
         const slug = req.params.slug
@@ -221,5 +236,24 @@ export const productDetails = async (req) => {
             message: "Something went wrong",
             error: error.message
         }
+    }
+}
+
+export const searchByKeyword = async (req) =>{
+    try {
+        const regx = {"$regex":req.params.keyword,"$options":"i"}
+        //let SearchRegex = {"$regex": req.params.keyword, "$options": "i"}
+        const search = [{title:regx},{shortDescription:regx},{slug:regx}]
+        const searchQuery = {$or:search}
+        const match = {$match:searchQuery}
+        const limit = {$limit:10}
+        const response = await ProductModel.aggregate([match,limit,fetchBrandByProduct,unwindBrand,fetchCategoryByProduct,unwindCategory,projection])
+        return {
+            success: true,
+            message: "Keyword Product Get Success",
+            data:response   
+        }
+    } catch (error) {
+        
     }
 }

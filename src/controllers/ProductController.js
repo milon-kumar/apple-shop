@@ -1,4 +1,4 @@
-import { allBrands, allCategories, remarkProducts ,categoryProduct,brandProduct,productDetails,smilierProduct} from "../services/ProductService.js"
+import { allBrands, allCategories, remarkProducts ,categoryProduct,brandProduct,productDetails,smilierProduct,allSliders,searchByKeyword} from "../services/ProductService.js"
 
 export const BrandList = async (req,res)=>{
     const result = await allBrands()
@@ -11,7 +11,8 @@ export const CategoryList = async (req,res)=>{
 }
 
 export const SliderList = async (req,res)=>{
-    return res.status(200).json()
+    const result = await allSliders();
+    return res.status(200).json(result)
 }
 
 export const ListByCategoryProduct = async (req,res)=>{
@@ -25,7 +26,8 @@ export const ListByBrandProduct = async (req,res)=>{
 }
 
 export const ListByKeywordProduct = async (req,res)=>{
-    return res.status(200).json()
+    const result = await searchByKeyword(req)
+    return res.status(200).json(result)
 }
 
 export const ListBySmilierProduct = async (req,res)=>{

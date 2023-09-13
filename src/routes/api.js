@@ -30,7 +30,7 @@ router.get('/category-list',CategoryList);
 router.get('/slider-list',SliderList);
 router.get('/list-by-category/:slug',ListByCategoryProduct);
 router.get('/list-by-brand/:slug',ListByBrandProduct);
-router.get('/list-by-keyword',ListByKeywordProduct);
+router.get('/list-by-keyword/:keyword',ListByKeywordProduct);
 router.get('/list-by-smilier/:slug',ListBySmilierProduct);
 router.get('/list-by-review',ListByReviewProduct);
 router.get('/list-by-remark/:remark',ListByRemarkProduct);
