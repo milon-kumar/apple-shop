@@ -1,7 +1,7 @@
 import JWT from "jsonwebtoken"
 
 export const EncodeToken = (email,userId) =>{
-    return JWT.sign({email:email,id:userId},'ABC123',{expiresIn:"1h"});
+    return JWT.sign({email:email,id:userId},'ABC123',{expiresIn:"24h"});
 }
 
 export const DecodToken = (token) =>{

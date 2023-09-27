@@ -46,27 +46,3 @@ export const ProductDetails = async (req,res)=>{
     const result = await productDetails(req)
     return res.status(200).json(result)
 }
-
-export const CartList = async (req,res)=>{
-    return res.status(200).json()
-}
-
-export const CreateCart = async (req,res)=>{
-    return res.status(200).json()
-}
-
-export const RemoveCart = async (req,res)=>{
-    return res.status(200).json()
-}
-
-export const ListWishProduct = async (req,res)=>{
-    return res.status(200).json()
-}
-
-export const CreateWishProduct = async (req,res)=>{
-    return res.status(200).json()
-}
-
-export const RemoveWishProduct = async (req,res)=>{
-    return res.status(200).json()
-}

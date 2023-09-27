@@ -2,13 +2,11 @@ import express from "express"
 import {
     BrandList,
     CategoryList,
-    CartList,
-    CreateCart, CreateWishProduct, ListByBrandProduct,
+    ListByBrandProduct,
     ListByCategoryProduct,
     ListByKeywordProduct,
-    ListByRemarkProduct, ListByReviewProduct, ListBySmilierProduct, ListWishProduct,
+    ListByRemarkProduct, ListByReviewProduct, ListBySmilierProduct,
     ProductDetails,
-    RemoveCart, RemoveWishProduct,
     SliderList
 } from "../controllers/ProductController.js";
 import {UserLogin,VerifyUser,UserLogout} from "../controllers/UserController.js";
@@ -21,6 +19,8 @@ import {
     PaymentFail, PaymentIpn,
     PaymentSuccess
 } from "../controllers/InvoiceController.js";
+import { CartList,CreateCart,RemoveCart } from "../controllers/CartController.js";
+import { WishList,CreateWish,RemoveWish } from "../controllers/WishController.js";
 import AuthVerification from "../middlewares/AuthVerification.js";
 const router = express.Router();
 
@@ -35,12 +35,14 @@ router.get('/list-by-smilier/:slug',ListBySmilierProduct);
 router.get('/list-by-review',ListByReviewProduct);
 router.get('/list-by-remark/:remark',ListByRemarkProduct);
 router.get('/product-details/:slug',ProductDetails);
-router.get('/cart-list',CartList);
-router.post('/create-cart',CreateCart);
-router.get('/remove-cart',RemoveCart);
-router.get('/wishlist-product',ListWishProduct);
-router.get('/wish-create-product',CreateWishProduct);
-router.get('/wish-remove-product/:id',RemoveWishProduct);
+
+router.get('/cart-list',AuthVerification,CartList);
+router.post('/create-cart',AuthVerification,CreateCart);
+router.get('/remove-cart/:id',AuthVerification,RemoveCart);
+
+router.get('/wishlist-product',AuthVerification,WishList);
+router.post('/wish-create-product',AuthVerification,CreateWish);
+router.get('/wish-remove-product/:id',AuthVerification,RemoveWish);
 
 router.get('/login-user/:email',UserLogin);
 router.get('/user-verify/:email/:otp',VerifyUser);

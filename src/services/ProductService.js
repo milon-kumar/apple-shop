@@ -1,5 +1,4 @@
 import BrandModel from "../models/BrandModel.js"
-import { ObjectId } from "mongoose"
 import CategoryModel from "../models/CategoryModel.js"
 import ProductModel from "../models/ProductModel.js"
 const fetchBrandByProduct = { $lookup: { from: 'brands', localField: 'brandId', foreignField: '_id', as: 'brand' } }
@@ -87,18 +86,6 @@ export const updateOrCreate = async (req) => {
 
 export const remarkProducts = async (req) => {
     try {
-<<<<<<< HEAD
-        let remark=req.params.remark
-
-        const products = await ProductModel.aggregate([
-            {$project:{"_id":0}},
-            {$lookup:}
-    ])
-
-
-        return {status:"success", data:products}
-        
-=======
         const remark = req.params.remark
         const products = await ProductModel.aggregate(
             [
@@ -115,7 +102,6 @@ export const remarkProducts = async (req) => {
             message: "Product Get By Remark Success",
             data: products
         }
->>>>>>> d0d2b4326ad2a151ec85613f1bc40dad659c063d
     } catch (error) {
         return {
             success: false,

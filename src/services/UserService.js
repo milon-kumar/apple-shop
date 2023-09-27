@@ -1,23 +1,22 @@
 import UserModel from "../models/UserModel.js";
 import { EncodeToken } from "../utils/JwtToken.js";
-import SendEmail from "../utils/SendEmail.js";
+// import SendEmail from "../utils/SendEmail.js";
 import ProfileModel from "../models/ProfileModel.js";
 
 
 export const UserOtp = async (req) => {
     const email = req.params.email;
     const OTP = Math.floor(100000 + Math.random() * 900000);
-    const emailText = `Your Verification Code is : ${OTP}`;
-    const subject = `OTP Verification`;
+    // const emailText = `Your Verification Code is : ${OTP}`;
+    // const subject = `OTP Verification`;
     try {
-        const sendEmailStatus = await SendEmail(email, emailText, subject);
+        //const sendEmailStatus = await SendEmail(email, emailText, subject);
         const userUpdateOrCreateStatus = await UserModel.updateOne({ email: email }, { $set: { otp: OTP } }, { upsert: true });
         return {
             success: true,
             message: "Email Send Success",
             data: {
                 OTP,
-                sendEmailStatus,
                 userUpdateOrCreateStatus,
             }
         }
