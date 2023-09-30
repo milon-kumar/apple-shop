@@ -1,7 +1,7 @@
-const mongoose = import('mongoose');
-
-const Schema = mongoose.Schema({
-    userId:{type:mongoose.Schema.Types.ObjectId,required:true},
+import mongoose from 'mongoose';
+import { Schema } from 'mongoose';
+const DataSchema = new Schema({
+    userId:{type:Schema.ObjectId,required:true},
     total:{type:String,required:true},
     vat:{type:String,required:true},
     payable:{type:String,required:true},
@@ -13,6 +13,6 @@ const Schema = mongoose.Schema({
     payment_status:{type:String,required:true},
 },{timestamps:true,versionKey:false});
 
-const InvoiceModel = mongoose.model('invoices',Schema);
+const InvoiceModel = mongoose.model('invoices',DataSchema);
 
 export default InvoiceModel;

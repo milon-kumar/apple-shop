@@ -1,6 +1,6 @@
-const mongoose = import('mongoose');
-
-const Schema = mongoose.Schema({
+import mongoose from "mongoose";
+import { Schema } from "mongoose";
+const DataSchema = new Schema({
     store_id:{type:String,required:true},
     store_passwd:{type:String,required: true},
     currency:{type:String,required: true},
@@ -11,6 +11,6 @@ const Schema = mongoose.Schema({
     init_url:{type:String,required: true},
 },{timestamps:true,versionKey:false});
 
-const PaymentSettingModel = mongoose.model('paymentSettings',Schema);
+const PaymentSettingModel = mongoose.model('paymentSettings',DataSchema);
 
 export default PaymentSettingModel;

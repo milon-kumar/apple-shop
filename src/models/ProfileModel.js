@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 const { Schema } = mongoose;
 
 const DataSchema = new Schema({
-    userId:{type:mongoose.Schema.Types.ObjectId,required:true},
+    userId:{type:Schema.ObjectId,required:true},
     image:{type: String,required:false},
     cus_name:{type: String,required: true},
     cus_add:{type: String,required: true},

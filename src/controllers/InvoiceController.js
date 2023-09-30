@@ -1,8 +1,8 @@
+import { CalculateInvoice } from "../services/InvoiceService.js"
+
 export const InvoiceCreate = async (req,res)=>{
-    return res.status(200).json({
-        success:true,
-        message:"Invoice Create",
-    })
+    const result = await CalculateInvoice(req)
+    return res.status(200).json(result)
 }
 
 export const InvoiceList = async (req,res)=>{

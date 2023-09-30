@@ -52,7 +52,7 @@ router.post('/create-profile',AuthVerification,CreateProfile);
 router.get('/read-profile',AuthVerification,ReadProfile);
 router.post('/update-profile',AuthVerification,UpdateProfile);
 
-router.post('/invoice-create',AuthVerification,InvoiceCreate);
+router.get('/invoice-create',AuthVerification,InvoiceCreate);
 router.get('/invoice-list',AuthVerification,InvoiceList);
 router.get('/invoice-product-list',AuthVerification,InvoiceProductList);
 
